@@ -4,12 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_leaseprofile/bugerbar.dart';
 
 class FoodPage extends StatelessWidget {
-  late Widget? myList;
+  late Widget? myBurgerList;
   BugerBar bugerBar = BugerBar();
 
   @override
   Widget build(BuildContext context) {
-    myList = bugerBar.getBugerBar();
+    myBurgerList = bugerBar.getBugerBar();
 
     return Scaffold(
       appBar: AppBar(
@@ -18,7 +18,7 @@ class FoodPage extends StatelessWidget {
         elevation: 0.0,
       ),
       body: FoodTopMiddleBottom(),
-      drawer: myList,
+      drawer: myBurgerList,
     );
   }
 }

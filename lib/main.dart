@@ -14,6 +14,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: ThemeData(fontFamily: 'NotoSansKR'),
       initialRoute: '/',
       routes: {
         '/': (context) => HomePage(),
@@ -40,16 +41,18 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-
     myList = bugerBar.getBugerBar();
 
     return Scaffold(
-        appBar: AppBar(
-          title: Text('홈'),
-          centerTitle: true,
-          elevation: 0.0,
-        ),
-        drawer: myList
+      appBar: AppBar(
+        title: Text('홈'),
+        centerTitle: true,
+        elevation: 0.0,
+      ),
+      drawer: myList,
+      body: Container(
+        child: Text('hi'),
+      ),
     );
   }
 }
