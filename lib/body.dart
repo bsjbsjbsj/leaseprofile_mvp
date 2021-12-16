@@ -14,45 +14,13 @@ class _BodyPageState extends State<BodyPage>
   late Widget? myBurgerList;
   BugerBar bugerBar = BugerBar();
   TabController? _tabController;
-  int? selectedTabIndex = 0;
 
   final List<Tab> tabList = [
     Tab(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Icon(Icons.home),
-          SizedBox(
-            height: 1,
-          ),
-          Text('전체'),
-        ],
-      ),
+        icon: Icon(Icons.home),
     ),
-    Tab(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Icon(Icons.home),
-          SizedBox(
-            height: 1,
-          ),
-          Text('남자'),
-        ],
-      ),
-    ),
-    Tab(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Icon(Icons.home),
-          SizedBox(
-            height: 1,
-          ),
-          Text('여자'),
-        ],
-      ),
-    ),
+    Tab(icon: Icon(Icons.photo),),
+    Tab(icon: Icon(Icons.photo),),
   ];
 
   @override
@@ -77,57 +45,110 @@ class _BodyPageState extends State<BodyPage>
     return Scaffold(
       drawer: myBurgerList,
       appBar: AppBar(
-        backgroundColor: Colors.white,
-        title: Text(
-          '바디프로필',
-          style: TextStyle(
-            color: Colors.black,
-            fontFamily: 'NotoSansKR',
-            fontWeight: FontWeight.w700,
-          ),
-        ),
-        centerTitle: true,
-        elevation: 2.0,
+        title: Text('바디프로필'),
       ),
       body: SafeArea(
         child: Column(
           children: [
             Container(
-              color: Colors.white,
               height: 60,
               width: double.infinity,
               child: TabBar(
-                overlayColor: MaterialStateProperty.resolveWith((states){
-                  if (states.contains(MaterialState.hovered)) return Colors.black.withOpacity(0.04);
-                  if (states.contains(MaterialState.focused) || states.contains(MaterialState.pressed)) return Colors.black.withOpacity(0.12);
-                  return null;
-                }),
                 tabs: tabList,
                 controller: _tabController,
                 labelColor: Colors.black,
-                indicator: BoxDecoration(color: Colors.amberAccent),
+                indicator: BoxDecoration(
+                  border: Border(
+                    bottom: BorderSide(
+                      color: Colors.black,
+                      width: 2.0,
+                    ),
+                  ),
+                ),
                 indicatorSize: TabBarIndicatorSize.tab,
-                onTap: (int currentTab) {
-                  setState(() {
-                    selectedTabIndex = currentTab;
-                  },);
-                },
+                unselectedLabelColor: Colors.grey[600],
               ),
             ),
-            if(selectedTabIndex==0)
             Container(
               width: double.infinity,
-              height: 100,
+              height: 500,
               child: TabBarView(
-                  controller: _tabController,
-                  children:
-                  tabList.map((Tab tab) {
-                    return Container(color: Colors.blue,);
-                  }).toList()
+                controller: _tabController,
+                children: [
+                  WholeTab(),
+                  FemaleTab(),
+                  MaleTab(),
+                ],
               ),
             ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class WholeTab extends StatelessWidget {
+  const WholeTab({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: GridView.count(
+        crossAxisCount: 3,
+        children: List.generate(50, (index) {
+          return Container(
+            margin: EdgeInsets.all(1),
+            child: Image.asset(
+              'assets/women1.jfif',
+              fit: BoxFit.fill,
+            ),
+          );
+        }),
+      ),
+    );
+  }
+}
+
+class FemaleTab extends StatelessWidget {
+  const FemaleTab({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: GridView.count(
+        crossAxisCount: 3,
+        children: List.generate(50, (index) {
+          return Container(
+            margin: EdgeInsets.all(1),
+            child: Image.asset(
+              'assets/women1.jfif',
+              fit: BoxFit.fill,
+            ),
+          );
+        }),
+      ),
+    );
+  }
+}
+
+class MaleTab extends StatelessWidget {
+  const MaleTab({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: GridView.count(
+        crossAxisCount: 3,
+        children: List.generate(50, (index) {
+          return Container(
+            margin: EdgeInsets.all(1),
+            child: Image.asset(
+              'assets/man1.jfif',
+              fit: BoxFit.fill,
+            ),
+          );
+        }),
       ),
     );
   }
