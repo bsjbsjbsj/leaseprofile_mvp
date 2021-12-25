@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:flutter_leaseprofile/main.dart';
+import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -109,6 +109,7 @@ class _GoogleButtonState extends State<GoogleButton> {
   }
 }
 
+
 //페이스북로그인 버튼 + 기능
 class FaceBookButton extends StatefulWidget {
   const FaceBookButton({Key? key}) : super(key: key);
@@ -118,10 +119,22 @@ class FaceBookButton extends StatefulWidget {
 }
 
 class _FaceBookButtonState extends State<FaceBookButton> {
+
+  Future<UserCredential> signInWithFacebook() async {
+    // Trigger the sign-in flow
+    final LoginResult loginResult = await FacebookAuth.instance.login();
+
+    // Create a credential from the access token
+    final OAuthCredential facebookAuthCredential = FacebookAuthProvider.credential(loginResult.accessToken!.token);
+
+    // Once signed in, return the UserCredential
+    return FirebaseAuth.instance.signInWithCredential(facebookAuthCredential);
+  }
+
   @override
   Widget build(BuildContext context) {
     return OutlinedButton(
-      onPressed: () {},
+      onPressed: signInWithFacebook,
       style: OutlinedButton.styleFrom(
         elevation: 1.0,
         primary: Colors.black,
