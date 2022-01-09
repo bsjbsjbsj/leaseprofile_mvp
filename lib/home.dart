@@ -1,8 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_leaseprofile/bugerbar.dart';
-import 'django.dart';
-
 
 class HomePage extends StatefulWidget {
   @override
@@ -10,36 +7,57 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  late Widget? myList;
-  BugerBar bugerBar = BugerBar();
-  Post Data = Post();
-
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    getData();
-  }
-
-  void getData() async{
-    var Post = await fetchPost();
-    setState(() {
-      Data = Post;
-    });
-  }
+  int screenIndex = 0;
+  List<Widget> screenList = [Home(), Text('채팅 스크린'), Text('마이 스크린')];
 
   @override
   Widget build(BuildContext context) {
-    myList = bugerBar.getBugerBar();
-
     return Scaffold(
       appBar: AppBar(
         title: Text('홈'),
       ),
-      drawer: myList,
-      body: Center(
-        child: Text('${Data.name}'),
+      bottomNavigationBar: BottomNavigationBar(
+        selectedIconTheme: IconThemeData(color: Colors.black),
+        unselectedIconTheme: IconThemeData(color: Colors.grey),
+        items: [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: '홈',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: '검색',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: '견적내기',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: '마이페이지',
+          ),
+        ],
+        onTap: (value) {setState(() {
+          screenIndex = value;
+        });},
+        elevation: 1.0,
       ),
+      body: screenList[screenIndex],
     );
   }
 }
+
+class Home extends StatefulWidget {
+  const Home({Key? key}) : super(key: key);
+
+  @override
+  _HomeState createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+  @override
+  Widget build(BuildContext context) {
+    return Container();
+  }
+}
+
