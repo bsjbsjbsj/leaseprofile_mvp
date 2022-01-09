@@ -9,6 +9,7 @@ import 'package:flutter_leaseprofile/inbody.dart';
 import 'package:flutter_leaseprofile/routine.dart';
 import 'package:flutter_leaseprofile/studio.dart';
 
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized(); //플러터엔진->파이어베이스이니셜라이즈앱
   try {

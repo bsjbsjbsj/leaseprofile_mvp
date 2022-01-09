@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_leaseprofile/bugerbar.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class FoodPage extends StatefulWidget {
   @override
@@ -114,11 +115,15 @@ class _FoodPageState extends State<FoodPage>
                       ],
                     ),
                   ),
+                  Container(
+                    child:
+                        ElevatedButton(onPressed: () {}, child: Text('재설정하기')),
+                  ) //재설정 버튼
                 ],
               ),
             ), //Top섹션 : 식단설계,인바디버튼
             Positioned(
-              top: 50,
+              bottom: 50,
               left: 5,
               right: 5,
               child: Column(
@@ -165,8 +170,13 @@ class _FoodPageState extends State<FoodPage>
   }
 }
 
-class InPutPage extends StatelessWidget {
-  const InPutPage({Key? key}) : super(key: key);
+class InPutPage extends StatefulWidget {
+  @override
+  State<InPutPage> createState() => _InPutPageState();
+}
+
+class _InPutPageState extends State<InPutPage> {
+  String? value1;
 
   @override
   Widget build(BuildContext context) {
@@ -190,6 +200,11 @@ class InPutPage extends StatelessWidget {
                         labelText: '단백질(g) 입력',
                       ),
                       keyboardType: TextInputType.number,
+                      onChanged: (value) {
+                        setState(() {
+                          value1 = value;
+                        });
+                      },
                     ),
                     ElevatedButton(
                       onPressed: () {},
