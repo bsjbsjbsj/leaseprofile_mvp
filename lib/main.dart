@@ -1,9 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter_leaseprofile/home.dart';
-import 'package:flutter_leaseprofile/login.dart';
-
+import 'package:flutter_leaseprofile/ui/home.dart';
+import 'ui/login.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized(); //플러터엔진->파이어베이스이니셜라이즈앱

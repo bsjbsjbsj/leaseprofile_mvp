@@ -48,7 +48,17 @@
                 <data android:scheme="@string/fb_login_protocol_scheme" />
             </intent-filter>
         </activity>
-        <!--페이스북 로그인 여기까지-->
+         <!--카카오톡 로그인-->
+        <activity android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity">
+        <meta-data android:name="com.kakao.sdk.AppKey" android:value="6e6467fb906d5bb6a92b875965b0e046" />
+            <intent-filter>
+            <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="kakao6e6467fb906d5bb6a92b875965b0e046" android:host="oauth" />
+            </intent-filter>
+        </activity>
+        <!--로그인 여기까지-->
         <meta-data
             android:name="flutterEmbedding"
             android:value="2" />
