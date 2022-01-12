@@ -13,6 +13,10 @@ class _EstimatePageState extends State<EstimatePage>
   List<Widget> estimateList = [
     Tab(text: '스튜디오'),
     Tab(text: '메이크업'),
+    Tab(text: '사진사'),
+    Tab(text: '왁싱'),
+    Tab(text: '태닝'),
+    Tab(text: '패키지'),
   ];
 
   @override
@@ -37,17 +41,22 @@ class _EstimatePageState extends State<EstimatePage>
             tabs: estimateList,
             controller: _tabController,
             indicatorSize: TabBarIndicatorSize.label,
+            isScrollable: true,
             labelColor: Colors.black,
             indicatorColor: Colors.transparent,
           ),
         ),
         Container(
-          height: 300,
+          height: 1000,
           child: TabBarView(
             controller: _tabController,
             children: [
               Mystudio(),
               Mymakeup(),
+              Myphotographer(),
+              Mywaxing(),
+              Mytanning(),
+              Mypackage(),
             ],
           ),
         )
@@ -56,13 +65,131 @@ class _EstimatePageState extends State<EstimatePage>
   }
 }
 
-class Mystudio extends StatelessWidget {
+class Mystudio extends StatefulWidget {
   const Mystudio({Key? key}) : super(key: key);
+
+  @override
+  State<Mystudio> createState() => _MystudioState();
+}
+
+class _MystudioState extends State<Mystudio> {
+  bool? _ischecked = false;
+  List<Widget> Mystudiolist = [];
 
   @override
   Widget build(BuildContext context) {
     return Container(
       color: Colors.green,
+      child: ListView.builder(
+          shrinkWrap: true,
+          itemCount: 2,
+          itemBuilder: (context, index) {
+            return Card(
+              elevation: 4.0,
+              child: CheckboxListTile(
+                controlAffinity: ListTileControlAffinity.leading,
+                activeColor: Colors.green,
+                checkColor: Colors.white,
+                onChanged: (bool? value) {
+                  setState(() {
+                    _ischecked = value;
+                  });
+                },
+                value: _ischecked,
+                title: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Image.asset(
+                      'assets/1.jpg',
+                      width: 100,
+                      height: 100,
+                      fit: BoxFit.fill,
+                    ),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text('제이스튜디오'),
+                          Text(
+                            '최상급 조명 장비 비치완료, 가성비 값',
+                            maxLines: 3,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+                subtitle: Column(
+                  children: [
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Container(
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                          border: Border.all(color: Colors.black38, width: 1)),
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text('옵션 선택'),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text('상품금액',
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black,
+                              fontSize: 16,
+                            )),
+                        Text(
+                          '100,000원',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black,
+                            fontSize: 16,
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Container(
+                          child: Text(
+                            '삭제하기',
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 15,
+                            ),
+                          ),
+                        ),
+                        Container(
+                          child: Text(
+                            '예약하기',
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 15,
+                            ),
+                          ),
+                        ),
+                      ],
+                    )
+                  ],
+                ),
+              ),
+            );
+          }),
     );
   }
 }
@@ -75,5 +202,41 @@ class Mymakeup extends StatelessWidget {
     return Container(
       color: Colors.black,
     );
+  }
+}
+
+class Myphotographer extends StatelessWidget {
+  const Myphotographer({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container();
+  }
+}
+
+class Mywaxing extends StatelessWidget {
+  const Mywaxing({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container();
+  }
+}
+
+class Mytanning extends StatelessWidget {
+  const Mytanning({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container();
+  }
+}
+
+class Mypackage extends StatelessWidget {
+  const Mypackage({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container();
   }
 }

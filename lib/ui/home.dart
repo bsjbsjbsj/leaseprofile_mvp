@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_leaseprofile/ui/calendar.dart';
 import 'package:flutter_leaseprofile/ui/estimate.dart';
 import 'package:flutter_leaseprofile/ui/login.dart';
 import 'package:flutter_leaseprofile/ui/mypage.dart';
@@ -14,7 +15,7 @@ class _HomePageState extends State<HomePage> {
   List<Widget> screenList = [
     Home(),
     EstimatePage(),
-    Text('마이 스크린'),
+    Calendar(),
     MyPage(),
   ];
 
@@ -209,70 +210,67 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
   Widget build(BuildContext context) {
     double? wholeHeight = MediaQuery.of(context).size.height;
     double? wholeWidth = MediaQuery.of(context).size.width;
-    return SafeArea(
-      child: Column(
-        children: [
-          Container(
+    return Column(
+      children: [
+        Container(
+          width: wholeWidth - 20,
+          height: wholeHeight * 0.07,
+          margin: EdgeInsets.symmetric(horizontal: 10),
+          child: Row(
+            children: [
+              Expanded(
+                flex: 8,
+                child: TextField(
+                  keyboardType: TextInputType.text,
+                  // onChanged: (text){
+                  //   _streamSearch.add(text);
+                  // },
+                  decoration: InputDecoration(
+                      hintText: '유명한 스튜디오',
+                      border: InputBorder.none,
+                      icon: Padding(
+                          padding: EdgeInsets.only(left: 13),
+                          child: Icon(Icons.search))),
+                ),
+              ),
+              Expanded(
+                flex: 2,
+                child: Icon(Icons.alarm),
+              ),
+            ],
+          ),
+        ),
+        Container(
             width: wholeWidth - 20,
-            height: wholeHeight * 0.07,
             margin: EdgeInsets.symmetric(horizontal: 10),
-            child: Row(
-              children: [
-                Expanded(
-                  flex: 8,
-                  child: TextField(
-                    keyboardType: TextInputType.text,
-                    // onChanged: (text){
-                    //   _streamSearch.add(text);
-                    // },
-                    decoration: InputDecoration(
-                        hintText: '유명한 스튜디오',
-                        border: InputBorder.none,
-                        icon: Padding(
-                            padding: EdgeInsets.only(left: 13),
-                            child: Icon(Icons.search))),
-                  ),
-                ),
-                Expanded(
-                  flex: 2,
-                  child: Icon(Icons.alarm),
-                ),
-              ],
-            ),
-          ),
-          Container(
-              width: wholeWidth - 20,
-              margin: EdgeInsets.symmetric(horizontal: 10),
-              height: wholeHeight * 0.12,
-              child: TabBar(
-                tabs: tabList,
-                controller: _tabController,
-                indicatorSize: TabBarIndicatorSize.tab,
-                isScrollable: true,
-                labelColor: Colors.black,
-                indicatorColor: Colors.transparent,
-              )),
-          SizedBox(
-            height: 20,
-          ),
-          Divider(),
-          Container(
-            width: wholeWidth,
-            height: wholeHeight,
-            child: TabBarView(
+            height: wholeHeight * 0.12,
+            child: TabBar(
+              tabs: tabList,
               controller: _tabController,
-              children: [
-                StudioTab(),
-                MakeupTab(),
-                PhotographerTab(),
-                WaxingTab(),
-                TanningTab(),
-                PackageTab(),
-              ],
-            ),
+              indicatorSize: TabBarIndicatorSize.tab,
+              isScrollable: true,
+              labelColor: Colors.black,
+              indicatorColor: Colors.transparent,
+            )),
+        SizedBox(
+          height: 20,
+        ),
+        Divider(),
+        Container(
+          height: wholeHeight,
+          child: TabBarView(
+            controller: _tabController,
+            children: [
+              StudioTab(),
+              MakeupTab(),
+              PhotographerTab(),
+              WaxingTab(),
+              TanningTab(),
+              PackageTab(),
+            ],
           ),
-        ],
-      ),
+        )
+      ],
     );
   }
 }
@@ -369,69 +367,39 @@ class _StudioTabState extends State<StudioTab> {
           )),
         ],
       ),
-      Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          AspectRatio(
-            aspectRatio: 12 / 11,
-            child: Image.asset(
-              'assets/2.jpg',
-              fit: BoxFit.fill,
-            ),
-          ),
-          Expanded(
-              child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text('진스튜디오'),
-              SizedBox(
-                height: 8.0,
-              ),
-              Text('모던한 스튜디오 분위기'),
-              SizedBox(
-                height: 8,
-              ),
-              Text('100,000원')
-            ],
-          )),
-        ],
-      ),
     ];
-    return Container(
-      width: double.infinity,
-      margin: EdgeInsets.symmetric(horizontal: 10),
-      child: Column(
-        children: [
-          SizedBox(
-            height: 5,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                '총 ${studioList.length}개',
-                style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
-              ),
-              Text(
-                '최신순',
-                style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
-              ),
-            ],
-          ),
-          SizedBox(
-            height: 10,
-          ),
-          Expanded(
-              child: GridView.count(
-            crossAxisCount: 2,
-            crossAxisSpacing: 4,
-            mainAxisSpacing: 4,
-            physics: NeverScrollableScrollPhysics(),
-            childAspectRatio: 6.0 / 9.0,
-            children: studioList,
-          )),
-        ],
-      ),
+    return Column(
+      children: [
+        SizedBox(
+          height: 5,
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              '총 ${studioList.length}개',
+              style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
+            ),
+            Text(
+              '최신순',
+              style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
+            ),
+          ],
+        ),
+        SizedBox(
+          height: 10,
+        ),
+        GridView.count(
+          scrollDirection: Axis.vertical,
+          shrinkWrap: true,
+          crossAxisCount: 2,
+          crossAxisSpacing: 4,
+          mainAxisSpacing: 4,
+          physics: NeverScrollableScrollPhysics(),
+          childAspectRatio: 6.0 / 9.0,
+          children: studioList,
+        ),
+      ],
     );
   }
 }
