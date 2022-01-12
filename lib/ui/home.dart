@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_leaseprofile/ui/estimate.dart';
 import 'package:flutter_leaseprofile/ui/login.dart';
 import 'package:flutter_leaseprofile/ui/mypage.dart';
 
@@ -12,7 +13,7 @@ class _HomePageState extends State<HomePage> {
   int screenIndex = 0;
   List<Widget> screenList = [
     Home(),
-    Text('채팅 스크린'),
+    EstimatePage(),
     Text('마이 스크린'),
     MyPage(),
   ];
@@ -62,9 +63,8 @@ class _HomePageState extends State<HomePage> {
       body: SingleChildScrollView(
         scrollDirection: Axis.vertical,
         child: GestureDetector(
-          onTap: () => FocusScope.of(context).unfocus(),
-          child: screenList[screenIndex],
-        ),
+            onTap: () => FocusScope.of(context).unfocus(),
+            child: screenList[screenIndex]),
       ),
       resizeToAvoidBottomInset: false,
       backgroundColor: Colors.white,
