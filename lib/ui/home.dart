@@ -289,26 +289,37 @@ class _StudioTabState extends State<StudioTab> {
       Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          AspectRatio(
-            aspectRatio: 12 / 11,
-            child: Image.asset(
-              'assets/1.jpg',
-              fit: BoxFit.fill,
+          Stack(children: [
+            AspectRatio(
+              aspectRatio: 9 / 11,
+              child: Image.asset(
+                'assets/1.jpg',
+                fit: BoxFit.fill,
+              ),
             ),
-          ),
+            Positioned(
+              top: 5,
+              right: 5,
+              child: Container(
+                child: Icon(
+                  Icons.favorite_border,
+                  color: Colors.white,
+                ),
+              ),
+            ),
+          ]),
           Expanded(
               child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text('에이스튜디오'),
               SizedBox(
                 height: 8.0,
               ),
-              Text('모던한 스튜디오 분위기'),
-              SizedBox(
-                height: 8,
+              Text(
+                '#모던한 #차가운',
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
               ),
-              Text('100,000원')
             ],
           )),
         ],
@@ -316,26 +327,37 @@ class _StudioTabState extends State<StudioTab> {
       Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          AspectRatio(
-            aspectRatio: 12 / 11,
-            child: Image.asset(
-              'assets/4.jpg',
-              fit: BoxFit.fill,
+          Stack(children: [
+            AspectRatio(
+              aspectRatio: 9 / 11,
+              child: Image.asset(
+                'assets/4.jpg',
+                fit: BoxFit.fill,
+              ),
             ),
-          ),
+            Positioned(
+              top: 5,
+              right: 5,
+              child: Container(
+                child: Icon(
+                  Icons.favorite_border,
+                  color: Colors.white,
+                ),
+              ),
+            ),
+          ]),
           Expanded(
               child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text('진스튜디오'),
               SizedBox(
                 height: 8.0,
               ),
-              Text('강렬한 스튜디오 분위기'),
-              SizedBox(
-                height: 8,
+              Text(
+                '#강렬한 #공사장 분위기 #조명 연출',
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
               ),
-              Text('100,000원')
             ],
           )),
         ],
@@ -343,26 +365,37 @@ class _StudioTabState extends State<StudioTab> {
       Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          AspectRatio(
-            aspectRatio: 12 / 11,
-            child: Image.asset(
-              'assets/3.jpg',
-              fit: BoxFit.fill,
+          Stack(children: [
+            AspectRatio(
+              aspectRatio: 9 / 11,
+              child: Image.asset(
+                'assets/3.jpg',
+                fit: BoxFit.fill,
+              ),
             ),
-          ),
+            Positioned(
+              top: 5,
+              right: 5,
+              child: Container(
+                child: Icon(
+                  Icons.favorite_border,
+                  color: Colors.white,
+                ),
+              ),
+            ),
+          ]),
           Expanded(
               child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text('진스튜디오'),
               SizedBox(
                 height: 8.0,
               ),
-              Text('모던한 스튜디오 분위기'),
-              SizedBox(
-                height: 8,
+              Text(
+                '#모던한 #집 같은',
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
               ),
-              Text('100,000원')
             ],
           )),
         ],
@@ -396,7 +429,7 @@ class _StudioTabState extends State<StudioTab> {
           crossAxisSpacing: 4,
           mainAxisSpacing: 4,
           physics: NeverScrollableScrollPhysics(),
-          childAspectRatio: 6.0 / 9.0,
+          childAspectRatio: 6.5 / 9.0,
           children: studioList,
         ),
       ],

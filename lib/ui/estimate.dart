@@ -81,21 +81,22 @@ class _MystudioState extends State<Mystudio> {
     return Container(
       color: Colors.green,
       child: ListView.builder(
+          physics: NeverScrollableScrollPhysics(),
           shrinkWrap: true,
           itemCount: 2,
           itemBuilder: (context, index) {
             return Card(
               elevation: 4.0,
-              child: CheckboxListTile(
-                controlAffinity: ListTileControlAffinity.leading,
-                activeColor: Colors.green,
-                checkColor: Colors.white,
-                onChanged: (bool? value) {
-                  setState(() {
-                    _ischecked = value;
-                  });
-                },
-                value: _ischecked,
+              child: ListTile(
+                leading: Checkbox(
+                  activeColor: Colors.green,
+                  value: _ischecked,
+                  onChanged: (value) {
+                    setState(() {
+                      _ischecked = value;
+                    });
+                  },
+                ),
                 title: Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
