@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_leaseprofile/model/fakeModel.dart';
+import 'package:flutter_leaseprofile/repository/fetchData.dart';
 import 'package:flutter_leaseprofile/ui/calendar.dart';
 import 'package:flutter_leaseprofile/ui/estimate.dart';
 import 'package:flutter_leaseprofile/ui/login.dart';
@@ -233,10 +235,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                           child: Icon(Icons.search))),
                 ),
               ),
-              Expanded(
-                flex: 2,
-                child: Icon(Icons.alarm),
-              ),
+              Expanded(flex: 2, child: Icon(Icons.cancel)),
             ],
           ),
         ),

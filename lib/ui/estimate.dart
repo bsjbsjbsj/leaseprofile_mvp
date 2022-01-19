@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_leaseprofile/model/fakeModel.dart';
+import 'package:flutter_leaseprofile/repository/fetchData.dart';
+import 'package:provider/provider.dart';
 
 class EstimatePage extends StatefulWidget {
   const EstimatePage({Key? key}) : super(key: key);
@@ -200,9 +203,9 @@ class Mymakeup extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.black,
-    );
+    final shopProvier = Provider.of<PostProvider>(context);
+    var shopData = shopProvier.shopList();
+    return Container(child: Text(shopData.toString()));
   }
 }
 
