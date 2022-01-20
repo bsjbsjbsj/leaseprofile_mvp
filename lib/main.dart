@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_leaseprofile/model/fakeModel.dart';
+import 'package:flutter_leaseprofile/provider/postProvier.dart';
 import 'package:flutter_leaseprofile/repository/fetchData.dart';
 import 'package:flutter_leaseprofile/ui/home.dart';
 import 'package:provider/provider.dart';

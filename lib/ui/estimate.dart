@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_leaseprofile/model/fakeModel.dart';
+import 'package:flutter_leaseprofile/provider/postProvier.dart';
 import 'package:flutter_leaseprofile/repository/fetchData.dart';
 import 'package:provider/provider.dart';
 
@@ -198,14 +199,20 @@ class _MystudioState extends State<Mystudio> {
   }
 }
 
-class Mymakeup extends StatelessWidget {
+class Mymakeup extends StatefulWidget {
   const Mymakeup({Key? key}) : super(key: key);
 
   @override
+  State<Mymakeup> createState() => _MymakeupState();
+}
+
+class _MymakeupState extends State<Mymakeup> {
+  PostProvider _postProvider = PostProvider();
+
+  @override
   Widget build(BuildContext context) {
-    final shopProvier = Provider.of<PostProvider>(context);
-    var shopData = shopProvier.shopList();
-    return Container(child: Text(shopData.toString()));
+    _postProvider = Provider.of<PostProvider>(context, listen: false);
+    return Container(child: Text(_postProvider.shops[0].desc!.hash.toString()));
   }
 }
 
