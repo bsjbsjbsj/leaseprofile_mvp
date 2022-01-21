@@ -53,9 +53,7 @@ class _DietFoodPageState extends State<DietFoodPage>
 
     return Scaffold(
       //drawer: myBurgerList,
-      appBar: AppBar(
-        title: Text('푸드'),
-      ),
+
       body: SafeArea(
         child: Stack(
           children: [
@@ -169,9 +167,6 @@ class InPutPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         resizeToAvoidBottomInset: false,
-        appBar: AppBar(
-          title: Text('정보 입력'),
-        ),
         body: GestureDetector(
           onTap: () {
             FocusScope.of(context).unfocus();

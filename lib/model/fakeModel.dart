@@ -9,7 +9,7 @@ class FakeModel with ChangeNotifier {
   Images? images;
   Desc? desc;
   Option? option;
-  Option? price;
+  Price? price;
 
   FakeModel(
       {this.id,
@@ -58,4 +58,16 @@ class Option {
   factory Option.fromJson(Map<String, dynamic> json) => _$OptionFromJson(json);
 
   Map<String, dynamic> toJson() => _$OptionToJson(this);
+}
+
+@JsonSerializable()
+class Price {
+  String? p1;
+  String? p2;
+
+  Price({this.p1, this.p2});
+
+  factory Price.fromJson(Map<String, dynamic> json) => _$PriceFromJson(json);
+
+  Map<String, dynamic> toJson() => _$PriceToJson(this);
 }

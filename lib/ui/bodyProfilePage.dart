@@ -48,9 +48,7 @@ class _BodyProfilePageState extends State<BodyProfilePage>
   Widget build(BuildContext context) {
     return Scaffold(
       //drawer: myBurgerList,
-      appBar: AppBar(
-        title: Text('바디프로필'),
-      ),
+
       body: SafeArea(
         child: Column(
           children: [

@@ -20,7 +20,7 @@ FakeModel _$FakeModelFromJson(Map<String, dynamic> json) => FakeModel(
           : Option.fromJson(json['option'] as Map<String, dynamic>),
       price: json['price'] == null
           ? null
-          : Option.fromJson(json['price'] as Map<String, dynamic>),
+          : Price.fromJson(json['price'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$FakeModelToJson(FakeModel instance) => <String, dynamic>{
@@ -58,4 +58,14 @@ Option _$OptionFromJson(Map<String, dynamic> json) => Option(
 Map<String, dynamic> _$OptionToJson(Option instance) => <String, dynamic>{
       's1': instance.s1,
       's2': instance.s2,
+    };
+
+Price _$PriceFromJson(Map<String, dynamic> json) => Price(
+      p1: json['p1'] as String?,
+      p2: json['p2'] as String?,
+    );
+
+Map<String, dynamic> _$PriceToJson(Price instance) => <String, dynamic>{
+      'p1': instance.p1,
+      'p2': instance.p2,
     };
