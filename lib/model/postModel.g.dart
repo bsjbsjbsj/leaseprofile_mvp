@@ -1,12 +1,12 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'fakeModel.dart';
+part of 'postModel.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-FakeModel _$FakeModelFromJson(Map<String, dynamic> json) => FakeModel(
+PostModel _$PostModelFromJson(Map<String, dynamic> json) => PostModel(
       id: json['id'] as int?,
       shopName: json['shopName'] as String?,
       images: json['images'] == null
@@ -23,7 +23,7 @@ FakeModel _$FakeModelFromJson(Map<String, dynamic> json) => FakeModel(
           : Price.fromJson(json['price'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$FakeModelToJson(FakeModel instance) => <String, dynamic>{
+Map<String, dynamic> _$PostModelToJson(PostModel instance) => <String, dynamic>{
       'id': instance.id,
       'shopName': instance.shopName,
       'images': instance.images,
