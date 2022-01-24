@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_leaseprofile/model/fakeModel.dart';
 import 'package:flutter_leaseprofile/provider/postProvier.dart';
 import 'package:provider/provider.dart';
 
@@ -261,7 +260,7 @@ class _StudioTabState extends State<StudioTab> {
 
   @override
   Widget build(BuildContext context) {
-    _postProvider = Provider.of<PostProvider>(context, listen: false);
+    _postProvider = Provider.of<PostProvider>(context);
     _postProvider.getParsed();
     return Column(
       children: [
