@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_leaseprofile/provider/foodUserInfoProvider.dart';
 import 'package:flutter_leaseprofile/provider/postProvier.dart';
 import 'package:flutter_leaseprofile/ui/bodyProfilePage.dart';
 import 'package:flutter_leaseprofile/ui/dietFoodPage.dart';
@@ -19,6 +20,9 @@ void main() async {
       providers: [
         ChangeNotifierProvider(
           create: (_) => PostProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => FoodUserInfoProvider(),
         ),
       ],
       child: MyApp(),

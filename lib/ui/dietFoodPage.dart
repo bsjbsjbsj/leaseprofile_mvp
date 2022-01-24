@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_leaseprofile/provider/foodUserInfoProvider.dart';
+import 'package:provider/provider.dart';
 
 class DietFoodPage extends StatefulWidget {
   @override
@@ -10,6 +12,7 @@ class _DietFoodPageState extends State<DietFoodPage>
   late Widget? myBurgerList;
   //BugerBar bugerBar = BugerBar();
   TabController? _controller;
+  FoodUserInfoProvider? _foodUserInfoProvider;
 
   final List<Tab> foodList = [
     Tab(
@@ -49,11 +52,11 @@ class _DietFoodPageState extends State<DietFoodPage>
 
   @override
   Widget build(BuildContext context) {
+    _foodUserInfoProvider = Provider.of<FoodUserInfoProvider>(context);
+    _foodUserInfoProvider!.getUser();
     //myBurgerList = bugerBar.getBugerBar();
-
     return Scaffold(
       //drawer: myBurgerList,
-
       body: SafeArea(
         child: Stack(
           children: [
@@ -87,7 +90,13 @@ class _DietFoodPageState extends State<DietFoodPage>
                                 },
                                 child: Column(
                                   children: [
-                                    Text(' 터치하여 입력'),
+                                    if (_foodUserInfoProvider!.carbonhydrate ==
+                                        0)
+                                      Text(' 터치하여 입력'),
+                                    if (_foodUserInfoProvider!.carbonhydrate !=
+                                        null)
+                                      Text(_foodUserInfoProvider!.carbonhydrate
+                                          .toString()),
                                     Container(
                                       color: Colors.black,
                                       height: 0.5,
@@ -161,12 +170,24 @@ class _DietFoodPageState extends State<DietFoodPage>
 }
 
 class InPutPage extends StatelessWidget {
-  const InPutPage({Key? key}) : super(key: key);
+  final GlobalKey<FormState> _formKey = GlobalKey();
+  FoodUserInfoProvider? _foodUserInfoProvider;
+  TextEditingController _proteinController = TextEditingController();
+  TextEditingController _carbonhydrateController = TextEditingController();
+  TextEditingController _provinceController = TextEditingController();
+  TextEditingController _vitaminController = TextEditingController();
+  String? _userProtein;
+  String? _userCarbonhydrate;
+  String? _userProvince;
 
   @override
   Widget build(BuildContext context) {
+    _foodUserInfoProvider = Provider.of<FoodUserInfoProvider>(context);
     return Scaffold(
         resizeToAvoidBottomInset: false,
+        appBar: AppBar(
+          title: Text("영양정보 입력"),
+        ),
         body: GestureDetector(
           onTap: () {
             FocusScope.of(context).unfocus();
@@ -175,19 +196,49 @@ class InPutPage extends StatelessWidget {
             child: SafeArea(
               child: Container(
                 margin: EdgeInsets.fromLTRB(10, 20, 10, 20),
-                child: Column(
-                  children: [
-                    TextFormField(
-                      decoration: InputDecoration(
-                        labelText: '단백질(g) 입력',
+                child: Form(
+                  key: _formKey,
+                  child: Column(
+                    children: [
+                      TextFormField(
+                        controller: _carbonhydrateController,
+                        decoration: InputDecoration(
+                          labelText: '탄수화물(g) 입력',
+                        ),
+                        keyboardType: TextInputType.number,
+                        validator: (value) {
+                          if (value!.trim().isEmpty) {
+                            return "탄수화물(g)을 입력 해주세요.";
+                          }
+                          return null;
+                        },
+                        onSaved: (value) {
+                          _userCarbonhydrate = value;
+                        },
                       ),
-                      keyboardType: TextInputType.number,
-                    ),
-                    ElevatedButton(
-                      onPressed: () {},
-                      child: Text('데이터 저장하기'),
-                    )
-                  ],
+                      Row(
+                        children: [
+                          ElevatedButton(
+                            onPressed: () {
+                              if (_formKey.currentState!.validate()) {
+                                _formKey.currentState!.save();
+                              }
+                              _foodUserInfoProvider!.setUser(
+                                  carbonhydrate:
+                                      int.parse(_userCarbonhydrate!));
+                            },
+                            child: Text('데이터 저장하기'),
+                          ),
+                          ElevatedButton(
+                            onPressed: () {
+                              _foodUserInfoProvider!.removeUser();
+                            },
+                            child: Text('데이터 초기화'),
+                          )
+                        ],
+                      )
+                    ],
+                  ),
                 ),
               ),
             ),

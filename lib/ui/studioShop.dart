@@ -12,80 +12,6 @@ class StudioShop extends StatefulWidget {
 
 class _StudioShopState extends State<StudioShop>
     with SingleTickerProviderStateMixin {
-  List<Widget> screenList = [
-    Page1(),
-    Text("g241"),
-    Text("g242141"),
-    Text("g2441412121"),
-  ];
-  int screenIndex = 0;
-  TabController? _tabController;
-
-  @override
-  void initState() {
-    _tabController = TabController(length: screenList.length, vsync: this);
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    _tabController!.dispose();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    double? wholeHeight = MediaQuery.of(context).size.height;
-    double? wholeWidth = MediaQuery.of(context).size.width;
-    return Scaffold(
-        bottomNavigationBar: BottomNavigationBar(
-          items: [
-            BottomNavigationBarItem(
-              icon: Icon(
-                Icons.home,
-              ),
-              label: '홈',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(
-                Icons.shop,
-              ),
-              label: '견적내기',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(
-                Icons.calendar_today,
-              ),
-              label: '일정확인',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(
-                Icons.person,
-              ),
-              label: '마이페이지',
-            ),
-          ],
-          onTap: (value) {
-            setState(() {
-              screenIndex = value;
-            });
-          },
-          selectedItemColor: Colors.black,
-          unselectedItemColor: Colors.black,
-          type: BottomNavigationBarType.fixed,
-        ),
-        body: screenList[screenIndex]);
-  }
-}
-
-class Page1 extends StatefulWidget {
-  const Page1({Key? key}) : super(key: key);
-
-  @override
-  _Page1State createState() => _Page1State();
-}
-
-class _Page1State extends State<Page1> with SingleTickerProviderStateMixin {
   TabController? _tabController;
   List<Widget> tabList = [
     Column(
@@ -197,7 +123,6 @@ class _Page1State extends State<Page1> with SingleTickerProviderStateMixin {
       ],
     ),
   ];
-
   @override
   void initState() {
     _tabController = TabController(length: tabList.length, vsync: this);
@@ -205,12 +130,21 @@ class _Page1State extends State<Page1> with SingleTickerProviderStateMixin {
   }
 
   @override
+  void dispose() {
+    _tabController!.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     double? wholeHeight = MediaQuery.of(context).size.height;
     double? wholeWidth = MediaQuery.of(context).size.width;
-    return SingleChildScrollView(
-      scrollDirection: Axis.vertical,
-      child: SafeArea(
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('예약서비스'),
+      ),
+      body: SingleChildScrollView(
+        scrollDirection: Axis.vertical,
         child: Column(
           children: [
             Container(
@@ -315,17 +249,7 @@ class _StudioTabState extends State<StudioTab> {
               height: 8.0,
             ),
             Text(
-              _postProvider.shops[index].shopName.toString(),
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-            ),
-            Text(
               _postProvider.shops[index].desc!.hash.toString(),
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-            ),
-            Text(
-              _postProvider.shops[index].price!.p1.toString(),
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
             ),
@@ -363,7 +287,7 @@ class _StudioTabState extends State<StudioTab> {
         GridView.builder(
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
-            childAspectRatio: 5 / 9.0,
+            childAspectRatio: 6.5 / 9.0,
             crossAxisSpacing: 4,
             mainAxisSpacing: 4,
           ),
