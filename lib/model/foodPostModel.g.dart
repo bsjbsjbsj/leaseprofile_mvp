@@ -1,12 +1,13 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'postModel.dart';
+part of 'foodPostModel.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-PostModel _$PostModelFromJson(Map<String, dynamic> json) => PostModel(
+FoodPostModel _$FoodPostModelFromJson(Map<String, dynamic> json) =>
+    FoodPostModel(
       id: json['id'] as int?,
       shopName: json['shopName'] as String?,
       images: json['images'] == null
@@ -21,15 +22,20 @@ PostModel _$PostModelFromJson(Map<String, dynamic> json) => PostModel(
       price: json['price'] == null
           ? null
           : Price.fromJson(json['price'] as Map<String, dynamic>),
+      nutrients: json['nutrients'] == null
+          ? null
+          : Nutrients.fromJson(json['nutrients'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$PostModelToJson(PostModel instance) => <String, dynamic>{
+Map<String, dynamic> _$FoodPostModelToJson(FoodPostModel instance) =>
+    <String, dynamic>{
       'id': instance.id,
       'shopName': instance.shopName,
       'images': instance.images,
       'desc': instance.desc,
       'option': instance.option,
       'price': instance.price,
+      'nutrients': instance.nutrients,
     };
 
 Images _$ImagesFromJson(Map<String, dynamic> json) => Images(
@@ -68,4 +74,18 @@ Price _$PriceFromJson(Map<String, dynamic> json) => Price(
 Map<String, dynamic> _$PriceToJson(Price instance) => <String, dynamic>{
       'p1': instance.p1,
       'p2': instance.p2,
+    };
+
+Nutrients _$NutrientsFromJson(Map<String, dynamic> json) => Nutrients(
+      carbonhydrate: json['carbonhydrate'] as String?,
+      protein: json['protein'] as String?,
+      province: json['province'] as String?,
+      vitamin: json['vitamin'] as String?,
+    );
+
+Map<String, dynamic> _$NutrientsToJson(Nutrients instance) => <String, dynamic>{
+      'carbonhydrate': instance.carbonhydrate,
+      'protein': instance.protein,
+      'province': instance.province,
+      'vitamin': instance.vitamin,
     };

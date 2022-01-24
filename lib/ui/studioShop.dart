@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_leaseprofile/provider/postProvier.dart';
+import 'package:flutter_leaseprofile/provider/studioPostProvier.dart';
 import 'package:provider/provider.dart';
 
 class StudioShop extends StatefulWidget {
@@ -216,7 +216,7 @@ class StudioTab extends StatefulWidget {
 }
 
 class _StudioTabState extends State<StudioTab> {
-  late PostProvider _postProvider;
+  late studioPostProvider _postProvider;
   Widget _studiolist(int index) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -225,7 +225,7 @@ class _StudioTabState extends State<StudioTab> {
           AspectRatio(
             aspectRatio: 9 / 11,
             child: Image.asset(
-              _postProvider.shops[index].images!.mainImage.toString(),
+              _postProvider.studioShops[index].images!.mainImage.toString(),
               fit: BoxFit.fill,
             ),
           ),
@@ -248,7 +248,7 @@ class _StudioTabState extends State<StudioTab> {
               height: 8.0,
             ),
             Text(
-              _postProvider.shops[index].desc!.hash.toString(),
+              _postProvider.studioShops[index].desc!.hash.toString(),
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
             ),
@@ -260,7 +260,7 @@ class _StudioTabState extends State<StudioTab> {
 
   @override
   Widget build(BuildContext context) {
-    _postProvider = Provider.of<PostProvider>(context);
+    _postProvider = Provider.of<studioPostProvider>(context);
     _postProvider.getParsed();
     return Column(
       children: [
@@ -271,7 +271,7 @@ class _StudioTabState extends State<StudioTab> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              '총 ${_postProvider.shops.length}개',
+              '총 ${_postProvider.studioShops.length}개',
               style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
             ),
             Text(
@@ -290,7 +290,7 @@ class _StudioTabState extends State<StudioTab> {
             crossAxisSpacing: 4,
             mainAxisSpacing: 4,
           ),
-          itemCount: _postProvider.shops.length,
+          itemCount: _postProvider.studioShops.length,
           shrinkWrap: true,
           scrollDirection: Axis.vertical,
           physics: NeverScrollableScrollPhysics(),

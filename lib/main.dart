@@ -1,7 +1,8 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_leaseprofile/provider/foodPostProvider.dart';
 import 'package:flutter_leaseprofile/provider/foodUserInfoProvider.dart';
-import 'package:flutter_leaseprofile/provider/postProvier.dart';
+import 'package:flutter_leaseprofile/provider/studioPostProvier.dart';
 import 'package:flutter_leaseprofile/ui/bodyProfilePage.dart';
 import 'package:flutter_leaseprofile/ui/dietFoodPage.dart';
 import 'package:flutter_leaseprofile/ui/schedulePage.dart';
@@ -19,11 +20,14 @@ void main() async {
     MultiProvider(
       providers: [
         ChangeNotifierProvider(
-          create: (_) => PostProvider(),
+          create: (_) => studioPostProvider(),
         ),
         ChangeNotifierProvider(
           create: (_) => FoodUserInfoProvider(),
         ),
+        ChangeNotifierProvider(
+          create: (_) => foodPostProvider(),
+        )
       ],
       child: MyApp(),
     ),

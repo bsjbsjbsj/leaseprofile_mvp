@@ -1,0 +1,77 @@
+[
+  {
+    "id": 1,
+    "shopName": "[Better me] 닭가슴살 큐브 6종",
+    "images": {
+      "mainImage": "assets/food1.PNG"
+    },
+    "desc": {
+      "hash": "#무항생제, #간편 큐브",
+      "detail": "가성비 갑 맛있당"
+    },
+    "option": {
+      "s1": "구운맛",
+      "s2": "짭짭한맛"
+    },
+    "price": {
+      "p1": "1,600원",
+      "p2": "150,000원"
+    },
+    "nutrients": {
+      "carbonhydrate": "7",
+      "protein": "18",
+      "province": "3",
+      "vitamin": "0"
+    }
+  },
+  {
+    "id": 2,
+    "shopName": "[자연실록] 닭가슴살 큐브 스테이크 4종",
+    "images": {
+      "mainImage": "assets/food2.PNG"
+    },
+    "desc": {
+      "hash": "#촉촉한, #간편한",
+      "detail": "맛있당 맛있당"
+    },
+    "option": {
+      "s1": "숯불맛",
+      "s2": "매운맛"
+    },
+    "price": {
+      "p1": "6,320원",
+      "p2": "7,900원"
+    },
+    "nutrients": {
+      "carbonhydrate": "6",
+      "protein": "13",
+      "province": "3",
+      "vitamin": "0"
+    }
+  },
+  {
+    "id": 3,
+    "shopName": "[아임닭] 닭가슴살 큐브 6종 (4개입)",
+    "images": {
+      "mainImage": "assets/food3.PNG"
+    },
+    "desc": {
+      "hash": "#퍽퍽함이 적은, #조각",
+      "detail": "맛 좋당 맛 좋당"
+    },
+    "option": {
+      "s1": "오리지널 맛",
+      "s2": "불고기 맛"
+    },
+    "price": {
+      "p1": "7,990원",
+      "p2": "11,000원"
+    },
+    "nutrients": {
+      "carbonhydrate": "14",
+      "protein": "16",
+      "province": "2",
+      "vitamin": "0"
+    }
+  }
+]

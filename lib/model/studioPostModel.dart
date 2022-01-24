@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:json_annotation/json_annotation.dart';
-part 'postModel.g.dart';
+part 'studioPostModel.g.dart';
 
 @JsonSerializable()
-class PostModel with ChangeNotifier {
+class StudioPostModel with ChangeNotifier {
   int? id;
   String? shopName;
   Images? images;
@@ -11,7 +11,7 @@ class PostModel with ChangeNotifier {
   Option? option;
   Price? price;
 
-  PostModel(
+  StudioPostModel(
       {this.id,
       this.shopName,
       this.images,
@@ -19,10 +19,10 @@ class PostModel with ChangeNotifier {
       this.option,
       this.price});
 
-  factory PostModel.fromJson(Map<String, dynamic> json) =>
-      _$PostModelFromJson(json);
+  factory StudioPostModel.fromJson(Map<String, dynamic> json) =>
+      _$StudioPostModelFromJson(json);
 
-  Map<String, dynamic> toJson() => _$PostModelToJson(this);
+  Map<String, dynamic> toJson() => _$StudioPostModelToJson(this);
 }
 
 @JsonSerializable()

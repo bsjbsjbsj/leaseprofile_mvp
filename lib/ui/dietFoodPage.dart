@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_leaseprofile/provider/foodPostProvider.dart';
 import 'package:flutter_leaseprofile/provider/foodUserInfoProvider.dart';
 import 'package:provider/provider.dart';
 
@@ -58,110 +59,245 @@ class _DietFoodPageState extends State<DietFoodPage>
     return Scaffold(
       //drawer: myBurgerList,
       body: SafeArea(
-        child: Stack(
+        child: Column(
           children: [
-            Positioned(
-              child: Column(
-                children: [
-                  Container(
-                    height: 100,
-                    width: MediaQuery.of(context).size.width - 20,
-                    margin: EdgeInsets.symmetric(horizontal: 10),
-                    child: Column(
-                      children: [
-                        Row(
-                          children: [
-                            Expanded(
-                              flex: 2,
-                              child: Container(
-                                child: Text('탄수화물(g) :'),
-                              ),
-                            ),
-                            Expanded(
-                              flex: 2,
-                              child: GestureDetector(
-                                onTap: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => InPutPage(),
-                                    ),
-                                  );
-                                },
-                                child: Column(
-                                  children: [
-                                    if (_foodUserInfoProvider!.carbonhydrate ==
-                                        0)
-                                      Text(' 터치하여 입력'),
-                                    if (_foodUserInfoProvider!.carbonhydrate !=
-                                        null)
-                                      Text(_foodUserInfoProvider!.carbonhydrate
-                                          .toString()),
-                                    Container(
-                                      color: Colors.black,
-                                      height: 0.5,
-                                      width: 100,
-                                    )
-                                  ],
-                                ),
-                              ),
-                            ),
-                            Expanded(
-                              flex: 3,
-                              child: Container(
-                                height: 10,
-                                color: Colors.grey,
-                              ),
-                            ),
-                          ],
-                        ), //탄수화물
-                      ],
+            Column(
+              children: [
+                Row(
+                  children: [
+                    Expanded(
+                      flex: 2,
+                      child: Container(
+                        child: Text('탄수화물 :'),
+                      ),
                     ),
-                  ),
-                ],
-              ),
-            ), //Top섹션 : 식단설계,인바디버튼
-            Positioned(
-              top: 50,
-              left: 5,
-              right: 5,
-              child: Column(
-                children: [
-                  Container(
-                    width: double.infinity,
-                    height: 50,
-                    child: TabBar(
-                      labelColor: Colors.purple,
-                      tabs: foodList,
-                      controller: _controller,
-                      isScrollable: true,
-                      unselectedLabelColor: Colors.grey[500],
-                      indicatorSize: TabBarIndicatorSize.tab,
-                      indicator: BoxDecoration(
-                        border: Border(
-                          bottom: BorderSide(color: Colors.purple, width: 3.0),
+                    Expanded(
+                      flex: 2,
+                      child: GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => InPutPage(),
+                            ),
+                          );
+                        },
+                        child: Column(
+                          children: [
+                            if (_foodUserInfoProvider!.userCarbonhydrate ==
+                                null)
+                              Text(' 터치하여 입력'),
+                            if (_foodUserInfoProvider!.userCarbonhydrate !=
+                                null)
+                              Text(_foodUserInfoProvider!.userCarbonhydrate
+                                      .toString() +
+                                  "(g)"),
+                            Container(
+                              color: Colors.black,
+                              height: 0.5,
+                              width: 100,
+                            )
+                          ],
                         ),
                       ),
                     ),
-                  ),
-                  Container(
-                    width: double.infinity,
-                    height: 300,
-                    child: TabBarView(
-                      controller: _controller,
-                      children: [
-                        WholeTab(),
-                        SaladTab(),
-                        ChickenBreastTab(),
-                        AlmondTab(),
-                        ProteinTab(),
-                        VitaminTab(),
-                      ],
+                    Expanded(
+                      flex: 3,
+                      child: Container(
+                        height: 10,
+                        color: Colors.grey,
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 5,
+                ),
+                Row(
+                  children: [
+                    Expanded(
+                      flex: 2,
+                      child: Container(
+                        child: Text('단백질 :'),
+                      ),
+                    ),
+                    Expanded(
+                      flex: 2,
+                      child: GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => InPutPage(),
+                            ),
+                          );
+                        },
+                        child: Column(
+                          children: [
+                            if (_foodUserInfoProvider!.userProtein == null)
+                              Text(' 터치하여 입력'),
+                            if (_foodUserInfoProvider!.userProtein != null)
+                              Text(_foodUserInfoProvider!.userProtein
+                                      .toString() +
+                                  "(g)"),
+                            Container(
+                              color: Colors.black,
+                              height: 0.5,
+                              width: 100,
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      flex: 3,
+                      child: Container(
+                        height: 10,
+                        color: Colors.grey,
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 5,
+                ),
+                Row(
+                  children: [
+                    Expanded(
+                      flex: 2,
+                      child: Container(
+                        child: Text('지방 :'),
+                      ),
+                    ),
+                    Expanded(
+                      flex: 2,
+                      child: GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => InPutPage(),
+                            ),
+                          );
+                        },
+                        child: Column(
+                          children: [
+                            if (_foodUserInfoProvider!.userProvince == null)
+                              Text(' 터치하여 입력'),
+                            if (_foodUserInfoProvider!.userProvince != null)
+                              Text(_foodUserInfoProvider!.userProvince
+                                      .toString() +
+                                  "(g)"),
+                            Container(
+                              color: Colors.black,
+                              height: 0.5,
+                              width: 100,
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      flex: 3,
+                      child: Container(
+                        height: 10,
+                        color: Colors.grey,
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 5,
+                ),
+                Row(
+                  children: [
+                    Expanded(
+                      flex: 2,
+                      child: Container(
+                        child: Text('비타민 :'),
+                      ),
+                    ),
+                    Expanded(
+                      flex: 2,
+                      child: GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => InPutPage(),
+                            ),
+                          );
+                        },
+                        child: Column(
+                          children: [
+                            if (_foodUserInfoProvider!.userVitamin == null)
+                              Text(' 터치하여 입력'),
+                            if (_foodUserInfoProvider!.userVitamin != null)
+                              Text(_foodUserInfoProvider!.userVitamin
+                                      .toString() +
+                                  "(g)"),
+                            Container(
+                              color: Colors.black,
+                              height: 0.5,
+                              width: 100,
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      flex: 3,
+                      child: Container(
+                        height: 10,
+                        color: Colors.grey,
+                      ),
+                    ),
+                  ],
+                ), //탄수화물
+              ],
+            ),
+            SizedBox(
+              height: 30,
+            ),
+            Column(
+              children: [
+                Container(
+                  width: double.infinity,
+                  height: 50,
+                  child: TabBar(
+                    labelColor: Colors.purple,
+                    tabs: foodList,
+                    controller: _controller,
+                    isScrollable: true,
+                    unselectedLabelColor: Colors.grey[500],
+                    indicatorSize: TabBarIndicatorSize.tab,
+                    indicator: BoxDecoration(
+                      border: Border(
+                        bottom: BorderSide(color: Colors.purple, width: 3.0),
+                      ),
                     ),
                   ),
-                ],
-              ),
-            ), //Middle섹션 : 제품 쇼핑
+                ),
+                SizedBox(
+                  height: 5,
+                ),
+                Container(
+                  width: double.infinity,
+                  height: 400, //여기 컨테이너 사이즈 고려좀 해봐야 함
+                  child: TabBarView(
+                    controller: _controller,
+                    children: [
+                      WholeTab(),
+                      SaladTab(),
+                      ChickenBreastTab(),
+                      AlmondTab(),
+                      ProteinTab(),
+                      VitaminTab(),
+                    ],
+                  ),
+                ),
+              ],
+            ),
           ],
         ),
       ),
@@ -179,6 +315,7 @@ class InPutPage extends StatelessWidget {
   String? _userProtein;
   String? _userCarbonhydrate;
   String? _userProvince;
+  String? _userVitamin;
 
   @override
   Widget build(BuildContext context) {
@@ -216,6 +353,54 @@ class InPutPage extends StatelessWidget {
                           _userCarbonhydrate = value;
                         },
                       ),
+                      TextFormField(
+                        controller: _proteinController,
+                        decoration: InputDecoration(
+                          labelText: '단백질(g) 입력',
+                        ),
+                        keyboardType: TextInputType.number,
+                        validator: (value) {
+                          if (value!.trim().isEmpty) {
+                            return "단백질(g)을 입력 해주세요.";
+                          }
+                          return null;
+                        },
+                        onSaved: (value) {
+                          _userProtein = value;
+                        },
+                      ),
+                      TextFormField(
+                        controller: _provinceController,
+                        decoration: InputDecoration(
+                          labelText: '지방(g) 입력',
+                        ),
+                        keyboardType: TextInputType.number,
+                        validator: (value) {
+                          if (value!.trim().isEmpty) {
+                            return "지방(g)을 입력 해주세요.";
+                          }
+                          return null;
+                        },
+                        onSaved: (value) {
+                          _userProvince = value;
+                        },
+                      ),
+                      TextFormField(
+                        controller: _vitaminController,
+                        decoration: InputDecoration(
+                          labelText: '비타민(g) 입력',
+                        ),
+                        keyboardType: TextInputType.number,
+                        validator: (value) {
+                          if (value!.trim().isEmpty) {
+                            return "비타민(g)을 입력 해주세요.";
+                          }
+                          return null;
+                        },
+                        onSaved: (value) {
+                          _userVitamin = value;
+                        },
+                      ),
                       Row(
                         children: [
                           ElevatedButton(
@@ -224,8 +409,14 @@ class InPutPage extends StatelessWidget {
                                 _formKey.currentState!.save();
                               }
                               _foodUserInfoProvider!.setUser(
-                                  carbonhydrate:
+                                  userCarbonhydrate:
                                       int.parse(_userCarbonhydrate!));
+                              _foodUserInfoProvider!.setUser(
+                                  userProtein: int.parse(_userProtein!));
+                              _foodUserInfoProvider!.setUser(
+                                  userProvince: int.parse(_userProvince!));
+                              _foodUserInfoProvider!.setUser(
+                                  userVitamin: int.parse(_userVitamin!));
                             },
                             child: Text('데이터 저장하기'),
                           ),
@@ -248,54 +439,59 @@ class InPutPage extends StatelessWidget {
 } //식단설계 데이터 인풋 페이지
 
 class WholeTab extends StatelessWidget {
-  const WholeTab({Key? key}) : super(key: key);
+  late foodPostProvider _foodPostProvider;
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      scrollDirection: Axis.vertical,
-      child: Column(
-        children: List.generate(50, (index) {
-          return GestureDetector(
-            onTap: () {
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) => DetailPage(),
-                ),
-              );
-            },
-            child: Row(
-              children: [
-                Expanded(
-                  flex: 1,
-                  child: Container(
-                    height: 100,
-                    child: Image.asset(
-                      'assets/1.jpg',
-                      fit: BoxFit.fill,
-                    ),
-                  ),
-                ),
-                Expanded(
-                  flex: 2,
-                  child: Container(
-                    child: Text(
-                      '닭가슴살 200g \n 7,000원',
-                      textAlign: TextAlign.center,
-                    ),
-                  ),
-                ),
-                Expanded(
-                  flex: 1,
-                  child: Container(
-                    child: Icon(Icons.check),
-                  ),
-                ),
-              ],
+    _foodPostProvider = Provider.of<foodPostProvider>(context);
+    _foodPostProvider.getParsed();
+    Widget _foodlist(int index) {
+      return Row(
+        children: [
+          Expanded(
+            flex: 1,
+            child: Container(
+              height: 100,
+              child: Image.asset(
+                _foodPostProvider.foodShops[index].images!.mainImage.toString(),
+                fit: BoxFit.fill,
+              ),
             ),
-          );
-        }),
-      ),
+          ),
+          Expanded(
+            flex: 2,
+            child: Container(
+              child: Text(
+                '${_foodPostProvider.foodShops[index].shopName.toString()} \n ${_foodPostProvider.foodShops[index].price!.p1.toString()}',
+                textAlign: TextAlign.center,
+              ),
+            ),
+          ),
+          Expanded(
+            flex: 1,
+            child: Container(
+              child: Icon(Icons.check),
+            ),
+          ),
+        ],
+      );
+    }
+
+    return ListView.builder(
+      itemBuilder: (BuildContext context, int index) {
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            _foodlist(index),
+            SizedBox(
+              height: 10,
+            ),
+          ],
+        );
+      },
+      itemCount: _foodPostProvider.foodShops.length,
+      shrinkWrap: true,
+      scrollDirection: Axis.vertical,
     );
   }
 }
