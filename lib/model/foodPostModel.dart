@@ -5,6 +5,7 @@ part 'foodPostModel.g.dart';
 @JsonSerializable()
 class FoodPostModel with ChangeNotifier {
   int? id;
+  bool? isChecked;
   String? shopName;
   Images? images;
   Desc? desc;
@@ -14,6 +15,7 @@ class FoodPostModel with ChangeNotifier {
 
   FoodPostModel(
       {this.id,
+      this.isChecked,
       this.shopName,
       this.images,
       this.desc,

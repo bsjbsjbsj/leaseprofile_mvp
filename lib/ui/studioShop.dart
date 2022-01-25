@@ -139,69 +139,68 @@ class _StudioShopState extends State<StudioShop>
     double? wholeHeight = MediaQuery.of(context).size.height;
     double? wholeWidth = MediaQuery.of(context).size.width;
     return Scaffold(
-      appBar: AppBar(
-        title: Text('예약서비스'),
-      ),
       body: SingleChildScrollView(
         scrollDirection: Axis.vertical,
-        child: Column(
-          children: [
-            Container(
-              width: wholeWidth - 20,
-              height: wholeHeight * 0.07,
-              margin: EdgeInsets.symmetric(horizontal: 10),
-              child: Row(
-                children: [
-                  Expanded(
-                    flex: 8,
-                    child: TextField(
-                      keyboardType: TextInputType.text,
-                      // onChanged: (text){
-                      //   _streamSearch.add(text);
-                      // },
-                      decoration: InputDecoration(
-                          hintText: '유명한 스튜디오',
-                          border: InputBorder.none,
-                          icon: Padding(
-                              padding: EdgeInsets.only(left: 13),
-                              child: Icon(Icons.search))),
-                    ),
-                  ),
-                  Expanded(flex: 2, child: Icon(Icons.cancel)),
-                ],
-              ),
-            ),
-            Container(
+        child: SafeArea(
+          child: Column(
+            children: [
+              Container(
                 width: wholeWidth - 20,
+                height: wholeHeight * 0.07,
                 margin: EdgeInsets.symmetric(horizontal: 10),
-                height: wholeHeight * 0.12,
-                child: TabBar(
-                  tabs: tabList,
-                  controller: _tabController,
-                  indicatorSize: TabBarIndicatorSize.tab,
-                  isScrollable: true,
-                  labelColor: Colors.black,
-                  indicatorColor: Colors.transparent,
-                )),
-            SizedBox(
-              height: 20,
-            ),
-            Divider(),
-            Container(
-              height: wholeHeight,
-              child: TabBarView(
-                controller: _tabController,
-                children: [
-                  StudioTab(),
-                  MakeupTab(),
-                  PhotographerTab(),
-                  WaxingTab(),
-                  TanningTab(),
-                  PackageTab(),
-                ],
+                child: Row(
+                  children: [
+                    Expanded(
+                      flex: 8,
+                      child: TextField(
+                        keyboardType: TextInputType.text,
+                        // onChanged: (text){
+                        //   _streamSearch.add(text);
+                        // },
+                        decoration: InputDecoration(
+                            hintText: '유명한 스튜디오',
+                            border: InputBorder.none,
+                            icon: Padding(
+                                padding: EdgeInsets.only(left: 13),
+                                child: Icon(Icons.search))),
+                      ),
+                    ),
+                    Expanded(flex: 2, child: Icon(Icons.cancel)),
+                  ],
+                ),
               ),
-            )
-          ],
+              Container(
+                  width: wholeWidth - 20,
+                  margin: EdgeInsets.symmetric(horizontal: 10),
+                  height: wholeHeight * 0.12,
+                  child: TabBar(
+                    tabs: tabList,
+                    controller: _tabController,
+                    indicatorSize: TabBarIndicatorSize.tab,
+                    isScrollable: true,
+                    labelColor: Colors.black,
+                    indicatorColor: Colors.transparent,
+                  )),
+              SizedBox(
+                height: 20,
+              ),
+              Divider(),
+              Container(
+                height: wholeHeight,
+                child: TabBarView(
+                  controller: _tabController,
+                  children: [
+                    StudioTab(),
+                    MakeupTab(),
+                    PhotographerTab(),
+                    WaxingTab(),
+                    TanningTab(),
+                    PackageTab(),
+                  ],
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );
@@ -209,59 +208,64 @@ class _StudioShopState extends State<StudioShop>
 }
 
 class StudioTab extends StatefulWidget {
-  const StudioTab({Key? key}) : super(key: key);
-
   @override
   State<StudioTab> createState() => _StudioTabState();
 }
 
 class _StudioTabState extends State<StudioTab> {
-  late studioPostProvider _postProvider;
-  Widget _studiolist(int index) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Stack(children: [
-          AspectRatio(
-            aspectRatio: 9 / 11,
-            child: Image.asset(
-              _postProvider.studioShops[index].images!.mainImage.toString(),
-              fit: BoxFit.fill,
-            ),
-          ),
-          Positioned(
-            top: 5,
-            right: 5,
-            child: Container(
-              child: Icon(
-                Icons.favorite_border,
-                color: Colors.white,
-              ),
-            ),
-          ),
-        ]),
-        Expanded(
-            child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SizedBox(
-              height: 8.0,
-            ),
-            Text(
-              _postProvider.studioShops[index].desc!.hash.toString(),
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-            ),
-          ],
-        )),
-      ],
-    );
+  late studioPostProvider _studioPostProvider;
+
+  @override
+  void didChangeDependencies() {
+    _studioPostProvider = Provider.of<studioPostProvider>(context);
+    _studioPostProvider.getParsed();
+    super.didChangeDependencies();
   }
 
   @override
   Widget build(BuildContext context) {
-    _postProvider = Provider.of<studioPostProvider>(context);
-    _postProvider.getParsed();
+    Widget _studiolist(int index) {
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Stack(children: [
+            AspectRatio(
+              aspectRatio: 9 / 11,
+              child: Image.asset(
+                _studioPostProvider.studioShops[index].images!.mainImage
+                    .toString(),
+                fit: BoxFit.fill,
+              ),
+            ),
+            Positioned(
+              top: 5,
+              right: 5,
+              child: Container(
+                child: Icon(
+                  Icons.favorite_border,
+                  color: Colors.white,
+                ),
+              ),
+            ),
+          ]),
+          Expanded(
+              child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(
+                height: 8.0,
+              ),
+              Text(
+                _studioPostProvider.studioShops[index].desc!.hash.toString(),
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+              ),
+            ],
+          )),
+        ],
+      );
+    }
+
     return Column(
       children: [
         SizedBox(
@@ -271,7 +275,7 @@ class _StudioTabState extends State<StudioTab> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              '총 ${_postProvider.studioShops.length}개',
+              '총 ${_studioPostProvider.studioShops.length}개',
               style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
             ),
             Text(
@@ -290,7 +294,7 @@ class _StudioTabState extends State<StudioTab> {
             crossAxisSpacing: 4,
             mainAxisSpacing: 4,
           ),
-          itemCount: _postProvider.studioShops.length,
+          itemCount: _studioPostProvider.studioShops.length,
           shrinkWrap: true,
           scrollDirection: Axis.vertical,
           physics: NeverScrollableScrollPhysics(),

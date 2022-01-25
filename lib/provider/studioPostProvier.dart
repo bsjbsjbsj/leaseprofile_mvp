@@ -14,7 +14,6 @@ class studioPostProvider with ChangeNotifier {
     final List<StudioPostModel> parsedResponse =
         JsonResponse.map<StudioPostModel>(
             (json) => StudioPostModel.fromJson(json)).toList();
-    debugPrint(parsedResponse[0].desc!.hash);
     _studioShops = parsedResponse;
     notifyListeners();
   }

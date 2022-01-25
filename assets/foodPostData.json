@@ -1,6 +1,7 @@
 [
   {
     "id": 1,
+    "isChecked": false,
     "shopName": "[Better me] 닭가슴살 큐브 6종",
     "images": {
       "mainImage": "assets/food1.PNG"
@@ -26,6 +27,7 @@
   },
   {
     "id": 2,
+    "isChecked": false,
     "shopName": "[자연실록] 닭가슴살 큐브 스테이크 4종",
     "images": {
       "mainImage": "assets/food2.PNG"
@@ -51,6 +53,7 @@
   },
   {
     "id": 3,
+    "isChecked": false,
     "shopName": "[아임닭] 닭가슴살 큐브 6종 (4개입)",
     "images": {
       "mainImage": "assets/food3.PNG"

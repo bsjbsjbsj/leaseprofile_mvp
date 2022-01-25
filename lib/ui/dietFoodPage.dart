@@ -10,8 +10,8 @@ class DietFoodPage extends StatefulWidget {
 
 class _DietFoodPageState extends State<DietFoodPage>
     with SingleTickerProviderStateMixin {
-  late Widget? myBurgerList;
-  //BugerBar bugerBar = BugerBar();
+  // late Widget? myBurgerList;
+  // //BugerBar bugerBar = BugerBar();
   TabController? _controller;
   FoodUserInfoProvider? _foodUserInfoProvider;
 
@@ -438,49 +438,75 @@ class InPutPage extends StatelessWidget {
   }
 } //식단설계 데이터 인풋 페이지
 
-class WholeTab extends StatelessWidget {
-  late foodPostProvider _foodPostProvider;
+class WholeTab extends StatefulWidget {
+  @override
+  State<WholeTab> createState() => _WholeTabState();
+}
+
+class _WholeTabState extends State<WholeTab> {
+  late FoodPostProvider _foodPostProvider;
+
+  @override
+  void didChangeDependencies() {
+    _foodPostProvider = Provider.of<FoodPostProvider>(context, listen: false);
+    _foodPostProvider.getParsed();
+
+    super.didChangeDependencies();
+  }
 
   @override
   Widget build(BuildContext context) {
-    _foodPostProvider = Provider.of<foodPostProvider>(context);
-    _foodPostProvider.getParsed();
     Widget _foodlist(int index) {
-      return Row(
-        children: [
-          Expanded(
-            flex: 1,
-            child: Container(
-              height: 100,
-              child: Image.asset(
-                _foodPostProvider.foodShops[index].images!.mainImage.toString(),
-                fit: BoxFit.fill,
+      return GestureDetector(
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => DetailPage(index: index),
+            ),
+          );
+        },
+        child: Row(
+          children: [
+            Expanded(
+              flex: 1,
+              child: Container(
+                height: 100,
+                child: Image.asset(
+                  _foodPostProvider.foodShops[index].images!.mainImage
+                      .toString(),
+                  fit: BoxFit.fill,
+                ),
               ),
             ),
-          ),
-          Expanded(
-            flex: 2,
-            child: Container(
-              child: Text(
-                '${_foodPostProvider.foodShops[index].shopName.toString()} \n ${_foodPostProvider.foodShops[index].price!.p1.toString()}',
-                textAlign: TextAlign.center,
+            Expanded(
+              flex: 2,
+              child: Container(
+                child: Text(
+                  '${_foodPostProvider.foodShops[index].shopName.toString()} \n ${_foodPostProvider.foodShops[index].price!.p1.toString()}',
+                  textAlign: TextAlign.center,
+                ),
               ),
             ),
-          ),
-          Expanded(
-            flex: 1,
-            child: Container(
-              child: Icon(Icons.check),
+            Expanded(
+              flex: 1,
+              child: Container(
+                child: Checkbox(
+                  value: _foodPostProvider.foodShops[index].isChecked,
+                  onChanged: (value) {
+                    _foodPostProvider.foodShops[index].isChecked = value!;
+                  },
+                ),
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       );
     }
 
     return ListView.builder(
       itemBuilder: (BuildContext context, int index) {
         return Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             _foodlist(index),
             SizedBox(
@@ -541,16 +567,59 @@ class VitaminTab extends StatelessWidget {
   }
 }
 
-class DetailPage extends StatelessWidget {
-  const DetailPage({Key? key}) : super(key: key);
+class DetailPage extends StatefulWidget {
+  DetailPage({Key? key, @required this.index}) : super(key: key);
+  int? index;
+
+  @override
+  State<DetailPage> createState() => _DetailPageState();
+}
+
+class _DetailPageState extends State<DetailPage> {
+  late FoodPostProvider _foodPostProvider;
+  @override
+  void didChangeDependencies() {
+    _foodPostProvider = Provider.of<FoodPostProvider>(context, listen: false);
+    _foodPostProvider.getParsed();
+    super.didChangeDependencies();
+  }
 
   @override
   Widget build(BuildContext context) {
+    int? index = widget.index;
     return Scaffold(
-      appBar: AppBar(
-        title: Text('그릴드 닭가슴살 200g'),
-      ),
-    );
+        appBar: AppBar(
+          title: Text(_foodPostProvider.foodShops[index!].shopName.toString()),
+        ),
+        body: Column(
+          children: [
+            Image.asset(_foodPostProvider.foodShops[index].images!.mainImage
+                .toString()),
+            Text(_foodPostProvider.foodShops[index].shopName.toString()),
+            Text(_foodPostProvider.foodShops[index].desc!.hash.toString()),
+            Text(_foodPostProvider.foodShops[index].price!.p1.toString()),
+            Row(
+              children: [
+                Expanded(
+                  flex: 1,
+                  child: ElevatedButton(
+                    onPressed: () {},
+                    child: Icon(Icons.shopping_cart),
+                  ),
+                ),
+                SizedBox(
+                  width: 10,
+                ),
+                Expanded(
+                  flex: 3,
+                  child: ElevatedButton(
+                    onPressed: () {},
+                    child: Text('구매하기'),
+                  ),
+                )
+              ],
+            )
+          ],
+        ));
   }
-} //디테일 페이지
-
+}

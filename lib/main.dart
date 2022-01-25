@@ -26,7 +26,7 @@ void main() async {
           create: (_) => FoodUserInfoProvider(),
         ),
         ChangeNotifierProvider(
-          create: (_) => foodPostProvider(),
+          create: (_) => FoodPostProvider(),
         )
       ],
       child: MyApp(),

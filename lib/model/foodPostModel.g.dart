@@ -9,6 +9,7 @@ part of 'foodPostModel.dart';
 FoodPostModel _$FoodPostModelFromJson(Map<String, dynamic> json) =>
     FoodPostModel(
       id: json['id'] as int?,
+      isChecked: json['isChecked'] as bool?,
       shopName: json['shopName'] as String?,
       images: json['images'] == null
           ? null
@@ -30,6 +31,7 @@ FoodPostModel _$FoodPostModelFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$FoodPostModelToJson(FoodPostModel instance) =>
     <String, dynamic>{
       'id': instance.id,
+      'isChecked': instance.isChecked,
       'shopName': instance.shopName,
       'images': instance.images,
       'desc': instance.desc,
