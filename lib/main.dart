@@ -31,7 +31,7 @@ void main() async {
         ),
         ChangeNotifierProvider(
           create: (_) => FoodCalculatingProvider(),
-        )
+        ),
       ],
       child: MyApp(),
     ),

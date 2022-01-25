@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_leaseprofile/provider/foodCalculatingProvider.dart';
 import 'package:flutter_leaseprofile/provider/foodPostProvider.dart';
 import 'package:flutter_leaseprofile/provider/foodUserInfoProvider.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 class DietFoodPage extends StatefulWidget {
@@ -461,6 +462,7 @@ class WholeTab extends StatefulWidget {
 }
 
 class _WholeTabState extends State<WholeTab> {
+  var f = NumberFormat('###,###,###,###');
   late FoodPostProvider _foodPostProvider;
   late FoodCalculatingProvider _foodCalculatingProvider;
 
@@ -503,7 +505,7 @@ class _WholeTabState extends State<WholeTab> {
               flex: 2,
               child: Container(
                 child: Text(
-                  "${_foodPostProvider.foodShops[index].shopName} \n ${_foodPostProvider.foodShops[index].price!.p1}",
+                  "${_foodPostProvider.foodShops[index].shopName} \n ${f.format(int.parse(_foodPostProvider.foodShops[index].price!.p1.toString()))} 원",
                   textAlign: TextAlign.center,
                 ),
               ),
@@ -640,6 +642,7 @@ class DetailPage extends StatefulWidget {
 }
 
 class _DetailPageState extends State<DetailPage> {
+  var f = NumberFormat('###,###,###,###');
   late FoodPostProvider _foodPostProvider;
   @override
   void didChangeDependencies() {
@@ -661,7 +664,9 @@ class _DetailPageState extends State<DetailPage> {
                 .toString()),
             Text("${_foodPostProvider.foodShops[index].shopName}"),
             Text("${_foodPostProvider.foodShops[index].desc!.hash}"),
-            Text("${_foodPostProvider.foodShops[index].price!.p1}"),
+            Text("${f.format(int.parse(
+              _foodPostProvider.foodShops[index].price!.p1.toString(),
+            ))} 원"),
             Row(
               children: [
                 Expanded(
