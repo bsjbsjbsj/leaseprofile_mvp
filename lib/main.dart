@@ -1,26 +1,17 @@
-import 'package:flutter_leaseprofile/foodPageModule/bindings.dart';
-import 'package:flutter_leaseprofile/foodPageModule/controller.dart';
+import 'package:flutter_leaseprofile/bindings.dart';
 import 'package:flutter_leaseprofile/inbodyPageModule/inbody.dart';
 import 'package:get/get.dart' as GetX;
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_leaseprofile/profilePageModule/profileView.dart';
 import 'package:flutter_leaseprofile/foodPageModule/ui/foodPage.dart';
 import 'package:flutter_leaseprofile/schedulePageModule/schedulePage.dart';
 import 'package:flutter_leaseprofile/studioPageModule/studioShop.dart';
 
-void main() async {
-  WidgetsFlutterBinding.ensureInitialized(); //플러터엔진->파이어베이스이니셜라이즈앱
-  try {
-    await Firebase.initializeApp();
-  } catch (e) {
-    print(e);
-  }
+void main() {
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  // static const String _title = 'Instagram clone';
   @override
   Widget build(BuildContext context) {
     return GetX.GetMaterialApp(

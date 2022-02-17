@@ -15,3 +15,33 @@ class FoodPageController extends GetxController {
     });
   }
 }
+
+class FoodCalculatingController extends GetxController {
+  RxDouble carbonhydrateTotal = 0.0.obs;
+  RxDouble proteinTotal = 0.0.obs;
+  RxDouble provinceTotal = 0.0.obs;
+
+  void carbonhydrateIncrement(double _carbonhydrate) {
+    carbonhydrateTotal.value + _carbonhydrate;
+  }
+
+  void carbonhydrateSubtract(double _carbonhydrate) {
+    carbonhydrateTotal.value - _carbonhydrate;
+  }
+
+  void proteinIncrement(double _protein) {
+    proteinTotal.value + _protein;
+  }
+
+  void proteinSubtract(double _protein) {
+    proteinTotal.value - _protein;
+  }
+
+  void provinceIncrement(double _province) {
+    provinceTotal.value + _province;
+  }
+
+  void provinceSubtract(double _province) {
+    provinceTotal.value - _province;
+  }
+}

@@ -19,7 +19,8 @@ FoodProductModel _$FoodProductModelFromJson(Map<String, dynamic> json) =>
       ..product_province = (json['product_province'] as num?)?.toDouble()
       ..product_price = json['product_price'] as int?
       ..product_like_count = json['product_like_count'] as int?
-      ..product_review_count = json['product_review_count'] as int?;
+      ..product_review_count = json['product_review_count'] as int?
+      ..product_ischecked = json['product_ischecked'] as bool?;
 
 Map<String, dynamic> _$FoodProductModelToJson(FoodProductModel instance) =>
     <String, dynamic>{
@@ -33,4 +34,5 @@ Map<String, dynamic> _$FoodProductModelToJson(FoodProductModel instance) =>
       'product_price': instance.product_price,
       'product_like_count': instance.product_like_count,
       'product_review_count': instance.product_review_count,
+      'product_ischecked': instance.product_ischecked,
     };

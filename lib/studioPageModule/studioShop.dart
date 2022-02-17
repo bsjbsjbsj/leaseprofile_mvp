@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_leaseprofile/studioPageModule/model/studioPageModel.dart';
-import 'package:provider/provider.dart';
 
 class StudioShop extends StatefulWidget {
   const StudioShop({Key? key}) : super(key: key);

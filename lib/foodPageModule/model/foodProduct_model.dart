@@ -13,6 +13,7 @@ class FoodProductModel {
   int? product_price;
   int? product_like_count;
   int? product_review_count;
+  bool? product_ischecked;
 
   FoodProductModel({this.product_id});
 
